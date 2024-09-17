@@ -18,10 +18,21 @@ class User extends Authenticatable implements JWTSubject
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
     ];
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
+    public function setFirstNameAttribute($value)
+    {
+        $this->attributes['first_name'] = ucfirst($value);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

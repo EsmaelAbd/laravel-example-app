@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +20,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('brand', BrandController::class);
+
+Route::get('user', [UserController::class, 'index']);
+Route::post('user', [UserController::class, 'store']);
+
+Route::get('product', [ProductController::class, 'index']);
+Route::post('product', [ProductController::class, 'store']);
